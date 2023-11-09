@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트 페이지</title>
+    <style>
+        .layout {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin-right: 5px;
+        }
+
+        .pagination a, .pagination strong {
+            padding: 8px;
+            text-decoration: none;
+            color: #000;
+            border: 1px solid #ddd;
+        }
+
+        .pagination strong {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+    <table>
+        <thead>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${list.content}">
+            <td th:text="${board.id}"></td>
+            <td>
+                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <li>
+                <a th:if="${page != nowPage}"
+                   th:href="@{/board/list(page=${page -1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
+                <strong th:if="${page == nowPage}" th:text="${page}" style="background-color: #4CAF50; color: white"></strong>
+            </li>
+        </th:block>
+    </ul>
+
+    <form th:action="@{/board/list}" method="get" style="margin-top: 20px;">
+        <input type="text" name="searchKeyword">
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+</body>
+</html>
