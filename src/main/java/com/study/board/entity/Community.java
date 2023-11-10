@@ -1,22 +1,19 @@
 package com.study.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.Data;
+
 import java.sql.Timestamp;
 
 @Entity
 @Data
-public class Board {
+public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comu_post_id")
     private Integer comu_post_id;
 
-    @Column(name = "comu_gubun")
+    @Column(name = "comu_gubun", length = 20)
     private String comu_gubun;
 
     @Column(name = "title", nullable = false)
@@ -37,6 +34,6 @@ public class Board {
     @Column(name = "cdate", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdDate;
 
-    @Column(name = "udate", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "udate", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp updatedDate;
 }

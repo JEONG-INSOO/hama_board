@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세페이지</title>
+</head>
+<body>
+    <h1 th:text="${community.title}"></h1>
+    <p th:text="${community.content}"></p>
+    <a th:href="@{|/community/${community.filename}|}">이미지보기</a>
+    <a th:href="@{/community/delete(comu_post_id=${community.comu_post_id})}">글삭제</a>
+    <a th:href="@{/community/modify/{comu_post_id}(comu_post_id=${community.comu_post_id})}">수정</a>
+</body>
+</html>

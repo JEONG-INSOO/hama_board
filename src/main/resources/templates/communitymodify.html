@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 작성폼</title>
+</head>
+
+<style>
+    .layout {
+    width: 500px;
+    margin: 0 auto;
+    }
+
+    .layout input {
+    width: 100%;
+    box-sizing: border-box;
+    }
+
+    .layout textarea {
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
+    }
+</style>
+<body>
+<div class="layout">
+  <form th:action="@{/community/update/{comu_post_id}(comu_post_id=${community.comu_post_id})}" method="post">
+    <input name="title" type="text" th:value="${community.title}">
+    <textarea name="content" th:text="${community.content}"></textarea>
+
+    <!-- 추가된 셀렉트 박스 -->
+    <label for="comu_gubun">게시판 위치:</label>
+    <select name="comu_gubun" id="comu_gubun" th:value="${community.comu_gubun}">
+      <option value="궁금해요">궁금</option>
+      <option value="얼마예요">얼마</option>
+      <option value="모여봐요">모여</option>
+    </select>
+
+    <button type="submit">작성</button>
+  </form>
+</div>
+</body>
+</html>

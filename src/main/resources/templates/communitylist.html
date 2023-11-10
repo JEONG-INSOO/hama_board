@@ -55,15 +55,17 @@
     <table>
         <thead>
         <tr>
+            <th>게시판</th>
             <th>글 번호</th>
             <th>제목</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="board : ${list.content}">
-            <td th:text="${board.id}"></td>
+        <tr th:each="community : ${list.content}">
+            <td th:text="${community.comu_gubun}"></td>
+            <td th:text="${community.comu_post_id}"></td>
             <td>
-                <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
+                <a th:text="${community.title}" th:href="@{/community/view(comu_post_id=${community.comu_post_id})}"></a>
             </td>
         </tr>
         </tbody>
@@ -73,13 +75,13 @@
         <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
             <li>
                 <a th:if="${page != nowPage}"
-                   th:href="@{/board/list(page=${page -1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
+                   th:href="@{/community/list(page=${page -1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
                 <strong th:if="${page == nowPage}" th:text="${page}" style="background-color: #4CAF50; color: white"></strong>
             </li>
         </th:block>
     </ul>
 
-    <form th:action="@{/board/list}" method="get" style="margin-top: 20px;">
+    <form th:action="@{/community/list}" method="get" style="margin-top: 20px;">
         <input type="text" name="searchKeyword">
         <button type="submit">검색</button>
     </form>
