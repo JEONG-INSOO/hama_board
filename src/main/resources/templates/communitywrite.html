@@ -1,48 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>게시물 작성폼</title>
+    <title>SummerNoteExample</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/summernote/summernote-lite.css">
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 450,
+                lang: "ko-KR"
+            });
+        });
+    </script>
+    <script th:inline="javascript" src="/summernote/summernote-lite.js"></script>
+    <script th:inline="javascript" src="/summernote/lang/summernote-ko-KR.js"></script>
 </head>
-
-<style>
-    .layout {
-    width: 500px;
-    margin: 0 auto;
-    }
-
-    .layout input, .layout textarea {
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 10px;
-    }
-
-    .layout button {
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 10px;
-    }
-
-    .layout label {
-    margin-right: 10px;
-    }
-
-    .layout .radio-group {
-    margin-top: 10px;
-    }
-
-</style>
 <body>
-<div class="layout">
+<div class="container">
     <form action="/community/writepro" method="post" enctype="multipart/form-data">
         <select name="comu_gubun" id="comu_gubun">
-            <option value="궁금해요">궁금</option>
-            <option value="얼마예요">얼마</option>
-            <option value="모여봐요">모여</option>
+            <option value="궁금해요">궁금해요</option>
+            <option value="얼마예요">얼마예요</option>
+            <option value="모여봐요">모여봐요</option>
         </select>
         <input name="title" type="text">
-        <textarea name="content"></textarea>
-        <input type="file" name="file">
+        <textarea class="summernote" name="content"></textarea>
         <button type="submit">작성</button>
     </form>
 </div>

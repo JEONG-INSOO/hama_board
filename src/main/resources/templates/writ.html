@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 작성폼</title>
+</head>
+
+<style>
+    .layout {
+    width: 500px;
+    margin: 0 auto;
+    }
+
+    .layout input, .layout textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    }
+
+    .layout button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    }
+
+    .layout label {
+    margin-right: 10px;
+    }
+
+    .layout .radio-group {
+    margin-top: 10px;
+    }
+
+</style>
+<body>
+<div class="layout">
+  <form action="/community/writepro" method="post" enctype="multipart/form-data">
+    <select name="comu_gubun" id="comu_gubun">
+      <option value="궁금해요">궁금</option>
+      <option value="얼마예요">얼마</option>
+      <option value="모여봐요">모여</option>
+    </select>
+    <input name="title" type="text">
+    <textarea name="content"></textarea>
+    <input type="file" name="file">
+    <button type="submit">작성</button>
+  </form>
+</div>
+</body>
+</html>
